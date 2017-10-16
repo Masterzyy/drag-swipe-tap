@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手势封装--swipe</title>
+</head>
+
+<body>
+    <script>
+        //需要判断手势方向
+
+        var startX, endX, startY, endY, absX, absY;
+
+        document.addEventListener('touchstart', function (e) {
+            var touches = e.targetTouches[0];
+
+            startX = touches.clientX;
+            startY = touches.clientY;
+        })
+        document.addEventListener('touched', function (e) {
+            var touches = e.changedTouches[0];
+            endX = touches.clientX;
+            endY = touches.clientY;
+
+            //计算x，y坐标的绝对值
+            absX = Math.abs(endX - startX);
+            absY = Math.abs(endY - startY);
+
+            //判断水平还是竖直
+            var direction = absX > absY ?
+            //如果是水平 判断左右
+            endX > startX ? '向右' : '向左'
+            :
+            //如果是竖直 判断上下
+            endY > startY ? '向下' : '向上';
+
+            console.log(direction);
+
+        })
+    </script>
+</body>
+
+</html>
